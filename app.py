@@ -10,6 +10,12 @@ logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET", "default_secret_key_for_development")
 
+# Configure for Replit environment
+# Note: Setting SERVER_NAME can cause issues with Replit's proxy
+# Instead, let's ensure the application responds to any host header
+app.config['PREFERRED_URL_SCHEME'] = 'https'
+logging.debug(f"Running in Replit environment: {os.environ.get('REPLIT_DOMAINS')}")
+
 @app.route('/')
 def index():
     """Render the main page with the Python practice interface"""
