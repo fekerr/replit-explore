@@ -1,0 +1,62 @@
+/* Custom styles for Python Terminal */
+
+/* Set minimum heights for the console and editor */
+.console-output {
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* CodeMirror custom height */
+.CodeMirror {
+    height: 300px !important;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+}
+
+/* Command history styling */
+.command-history {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.command-item {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.command-item:hover {
+    background-color: var(--bs-secondary-bg);
+}
+
+.command-item-code {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.85rem;
+}
+
+/* Error text styling */
+.error-text {
+    color: var(--bs-danger);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Animation for the running indicator */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+.running-indicator {
+    animation: blink 1s infinite;
+}
