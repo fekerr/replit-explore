@@ -57,9 +57,11 @@ for fruit in fruits:
     
     // Function to run the Python code
     async function runCode() {
+        console.log("runCode function called");
         const code = codeEditor.getValue();
         
         if (!code.trim()) {
+            console.log("Empty code, not submitting");
             return;
         }
         
@@ -68,13 +70,24 @@ for fruit in fruits:
         runButton.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Running...';
         
         try {
-            const response = await fetch('/execute', {
+            console.log("Sending code to server:", code.substring(0, 50) + "...");
+            
+            // Get current URL to ensure we use the correct protocol and domain
+            const baseUrl = window.location.origin;
+            const executeUrl = new URL('/execute', baseUrl).href;
+            console.log("Using execute URL:", executeUrl);
+            
+            const response = await fetch(executeUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ code }),
+                credentials: 'same-origin'
             });
+            
+            console.log("Response status:", response.status);
+            console.log("Response headers:", response.headers);
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

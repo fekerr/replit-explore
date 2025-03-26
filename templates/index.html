@@ -127,5 +127,15 @@
     
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/terminal.js') }}"></script>
+    <script>
+        // Debug console logging
+        console.log('Page loaded successfully');
+        
+        // Log any errors that occur
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error('Error: ' + message + ' at ' + source + ':' + lineno);
+            return false;
+        };
+    </script>
 </body>
 </html>
